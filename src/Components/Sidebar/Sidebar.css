@@ -1,0 +1,15 @@
+
+.sidebar{
+    background-color: #fca311;
+    height: 100vh;
+    position: absolute;
+    padding-left: 1em;
+}
+.sidebar span:hover {
+    background: rgb(0, 0, 52);
+    color: #fca311;
+}
+.activee{
+    background: rgb(0, 0, 52);
+    color: #fca311;
+}
