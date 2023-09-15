@@ -26,13 +26,14 @@ class Registration extends RestController{
         if(!empty($result)){
             $this->response([
                 'status' => 200,
+                'userId' => $result,
                 'message' => 'Restaurant registered successfully'
             ],RestController::HTTP_OK);
         }
         else{
             $this->response([
                 'status' => 500,
-                'message' => 'Failed'
+                'message' => 'Failed to upload'
             ],RestController::HTTP_BAD_REQUEST);
         }
     }
