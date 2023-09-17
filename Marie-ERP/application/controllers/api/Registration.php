@@ -17,16 +17,20 @@ class Registration extends RestController{
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type, Authorization");
-        $this->load->model('RegistrationApi_model');
+        $this->load->model('api/RegistrationApi_model');
     }
 
     public function onboarding_post(){
         $inputdata = json_decode(file_get_contents("php://input"),true);
+
         $result = $this->RegistrationApi_model->restaurant_registration($inputdata);
         if(!empty($result)){
             $this->response([
                 'status' => 200,
-                'userId' => $result,
+                'userId' => $result['userid'],
+                'restaurantName' => $result[0]['business_name'],
+                'clientMail' => $result[0]['client_email'],
+                'planType' => $result['plan_type'],
                 'message' => 'Restaurant registered successfully'
             ],RestController::HTTP_OK);
         }
@@ -37,5 +41,29 @@ class Registration extends RestController{
             ],RestController::HTTP_BAD_REQUEST);
         }
     }
+
+    
+    public function email_validation_post(){
+
+        $inputdata = json_decode(file_get_contents("php://input"),true);
+        if(!empty($inputdata)){
+            $email = $inputdata['email'];
+            $result =  $this->RegistrationApi_model->check_email_exist($email);
+            if($result){
+                $this->response([
+                    'status' => 200,
+                    'message' => 'Success'
+                ],RestController::HTTP_OK);
+            }
+            else{
+                $this->response([
+                    'status' => 500,
+                    'message' => 'Email already exist'
+                ],RestController::HTTP_BAD_REQUEST);
+            }
+        }
+    }
+
+
 
 }

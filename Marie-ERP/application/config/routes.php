@@ -59,7 +59,9 @@ $route['translate_uri_dashes'] = false;
 // restaurant api
 $route['api/registration'] = 'api/Registration/onboarding';
 $route['api/login'] = 'api/MarieLogin/login';
-$route['api/password_creation'] = 'api/MarieLogin/password_creation';
+$route['api/email_validation'] = 'api/Registration/email_validation';
+$route['api/email_verification'] = 'api/Registration/email_verification';
+
 /**
  * $route['googleMap'] = 'api/Google_controller/googlemap_function';
  * https://google.com/api/googleMap/

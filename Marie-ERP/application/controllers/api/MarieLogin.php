@@ -12,12 +12,13 @@ use chriskacerguis\RestServer\RestController;
 class MarieLogin extends RestController{
 
     public function __construct(){
-        parent::__construct();
+        parent::__construct();        
+        $this->load->model('api/MarieLogin_model');
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type, Authorization");
-        $this->load->model('MarieLogin_model');
-        // $this->load->library('RestController');
+
+
     }
     
     public function index_get(){
@@ -69,6 +70,8 @@ class MarieLogin extends RestController{
         }
 
     }
+
+
 
     // public function registration_post(){}
 
